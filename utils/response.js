@@ -18,6 +18,8 @@ export const successResponse = (
 };
 
 export const errorResponse = (status, message, res, req, error) => {
+
+
   return res.status(status).json({
     message,
     error,
