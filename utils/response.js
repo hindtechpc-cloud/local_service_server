@@ -1,3 +1,5 @@
+import AppError from "./appError.js";
+
 export const successResponse = (
   status,
   message,
@@ -17,11 +19,6 @@ export const successResponse = (
   });
 };
 
-export const errorResponse = (status, message, res, req, error) => {
-
-
-  return res.status(status).json({
-    message,
-    error,
-  });
+export const errorResponse = (status, message, res, req, error,next) => {
+  return next(new AppError("error",500,error))
 };

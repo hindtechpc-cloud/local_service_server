@@ -14,6 +14,11 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
     },
+    phone: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
     password: {
       type: String,
       required: true,
@@ -26,14 +31,13 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
 
-
     status: {
       type: String,
       enum: ["active", "inactive", "blocked"],
       default: "active",
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export const User = mongoose.model("User", userSchema);
