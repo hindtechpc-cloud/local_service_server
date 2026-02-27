@@ -19,6 +19,7 @@ export const successResponse = (
   });
 };
 
-export const errorResponse = (status, message, res, req, error,next) => {
-  return next(new AppError("error",500,error))
-};
+// export const errorResponse = (status, message, res, req, error,next) => {
+//   console.log(message,error)
+//   return next(new AppError(message,500,error))
+// };

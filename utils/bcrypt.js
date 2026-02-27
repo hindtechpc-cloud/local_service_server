@@ -1,15 +1,27 @@
-
+import AppError from "./appError.js";
 import { asyncHandler } from "./asyncHandller.js";
 import bcrypt from "bcryptjs";
-export const hashPassword = asyncHandler((password) => {
-  const hashedPassword = bcrypt.hashSync(password, 10);
-  return hashedPassword;
-});
-
-export const comparePassword = asyncHandler((password, usePassword, next) => {
-  const isPasswordMatched = bcrypt.compareSync(password, usePassword);
-  if (isPasswordMatched) {
-    return true;
+export const hashPassword = (password) => {
+  try {
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    if (!hashedPassword) {
+      throw new AppError("password not hashed", 500);
+    }
+    return hashedPassword;
+  } catch (error) {
+    throw new AppError(error.message, 500, error);
   }
-  return false;
-});
+};
+
+export const comparePassword = (password, userPassword) => {
+  try {
+    console.log(password, userPassword);
+    const isPasswordMatched = bcrypt.compareSync(password, userPassword);
+    if (isPasswordMatched) {
+      return true;
+    }
+    return fals;
+  } catch (error) {
+    throw new AppError(error.message, 500, error);
+  }
+};

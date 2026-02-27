@@ -11,11 +11,11 @@ const router = express.Router();
 
 router.post(
   "/register",
+  upload.single("profilePicture"),
   registerValidations,
   validate,
-  upload.single("profilePicture"),
   createAccount,
 );
-router.post("/register", loginValidation, validate, login);
+router.post("/login", loginValidation, validate, login);
 
 export const authRouter = router;
